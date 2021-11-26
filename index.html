@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- google fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+	<!-- my css -->
+	<link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/drum_1f941.png">
+	<link rel="stylesheet" href="jenStyle.css">
+	<title>@Jamjenjot | Drum Kit</title>
+</head>
+<body>
+
+	<h1>Play with your Computer Keyboard</h1>
+	<div class="keys">
+		<div class="drum a"><kbd>A</kbd><span> clap</span>
+			<img src="./imgUncolored/clap-a.png" alt="">
+		</div>
+		<div class="drum s"><kbd>S</kbd><span> hihat</span>
+			<img src="./imgUncolored/hihat-s.png" alt="">
+		</div>
+		<div class="drum d"><kbd>D</kbd><span> kick</span>
+			<img src="./imgUncolored/kick-d.png" alt="">
+		</div>
+		<div class="drum f"><kbd>F</kbd><span> openhat</span>
+			<img src="./imgUncolored/openhat-f.png" alt="">
+		</div>
+		<div class="drum h"><kbd>H</kbd><span> ride</span>
+			<img src="./imgUncolored/ride-h.png" alt="">
+		</div>
+		<div class="drum j"><kbd>J</kbd><span> snare</span>
+			<img src="./imgUncolored/snare-j.png" alt="">
+		</div>
+		<div class="drum k"><kbd>K</kbd><span> tom</span>
+			<img src="./imgUncolored/tom-k.png" alt="">
+		</div>
+		<div class="drum l"><kbd>L</kbd><span> tink</span>
+			<img src="./imgUncolored/tink-l.png" alt="">
+		</div>
+	</div>
+
+	<footer>
+		<h3>@Jamjenjot</h3>
+		<p>This website is paying tribute to Tsubasa Naruse.</p>
+	</footer>
+
+	<script>
+		let keyBtn = document.querySelectorAll(".drum");
+		for (var i = 0; i < keyBtn.length; i++){
+			keyBtn[i].addEventListener("click", function(){
+				let key = String(this.innerHTML).slice(5,6).toLowerCase();
+				playSound(key);
+				keyBtnAnimation(key);
+			})
+		}
+		document.addEventListener("keydown", function(e){
+			console.log(e.key);
+			playSound(e.key);
+			keyBtnAnimation(e.key);
+
+		});
+		function keyBtnAnimation(currentKey){
+			var activeKeyBtn = document.querySelector("." + currentKey);
+			activeKeyBtn.classList.add("play");
+			console.log(activeKeyBtn);
+			activeKeyBtn.innerHTML += '<img class="effect" src="./imgUncolored/effect.png" alt="">';
+			console.log(activeKeyBtn.lastChild);
+			setTimeout(() => {
+				activeKeyBtn.classList.remove("play");
+				activeKeyBtn.removeChild(activeKeyBtn.lastChild);
+			}, 100);
+			
+		}
+
+
+		function playSound(key){
+			switch (key) {
+				case "a":
+					let clap = new Audio("sounds/clap.wav");
+					clap.play();
+					break;
+				case "s":
+					let hihat = new Audio("sounds/hihat.wav");
+					hihat.play();
+					break;
+				case "d":
+					let kick = new Audio("sounds/kick.wav");
+					kick.play();
+					break;
+				case "f":
+					let openhat = new Audio("sounds/openhat.wav");
+					openhat.play();
+					break;
+				case "h":
+					let ride = new Audio("sounds/ride.wav");
+					ride.play();
+					break;
+				case "j":
+					let snare = new Audio("sounds/snare.wav");
+					snare.play();
+					break;
+				case "k":
+					let tom = new Audio("sounds/tom.wav");
+					tom.play();
+					break;
+				case "l":
+					let tink = new Audio("sounds/tink.wav");
+					tink.play();
+					break;
+			
+				default:
+					console.log(key);
+					break;
+			}
+		}
+	</script>
+
+
+</body>
+</html>
